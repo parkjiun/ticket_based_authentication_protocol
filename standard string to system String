@@ -1,3 +1,5 @@
+표준 C++ 라이브러리 문자열(<string>)을 String으로 변환
+
 // convert_standard_string_to_system_string.cpp
 // compile with: /clr
 #include <string>
