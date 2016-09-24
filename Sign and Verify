@@ -1,0 +1,48 @@
+서명(sign)
+
+    public:
+    array<unsigned char>^ SignData(
+    	array<unsigned char>^ buffer,
+    	Object^ halg
+    )
+  매개 변수
+    buffer
+    해시를 계산할 입력 데이터입니다.
+    
+    halg
+    해시 값을 만드는 데 사용할 해시 알고리즘입니다.
+  
+  반환 값
+    Type: array<System::Byte>^
+    지정된 데이터에 대한 RSA 서명입니다.
+  
+  예제
+    SHA1CryptoServiceProvider^ SHA1 = gcnew SHA1CryptoServiceProvider;
+  	array<Byte>^signed_text = RSA->SignData(plain_Text, SHA1);
+
+
+검증(verify)
+  
+  public:
+  bool VerifyData(
+  	array<unsigned char>^ buffer,
+  	Object^ halg,
+  	array<unsigned char>^ signature
+  )
+매개 변수
+  buffer
+  서명된 데이터
+
+  halg
+  데이터의 해시 값을 만드는 데 사용하는 해시 알고리즘의 이름입니다.
+
+  signature
+  확인할 서명 데이터입니다.
+
+반환 값
+  Type: System::Boolean
+  서명이 유효하면 true이고, 그렇지 않으면 false입니다.
+
+	array<Byte>^signed_text = RSA->SignData(plain_Text, SHA1);
+	RSA->FromXmlString(publicKeyText);
+	bool result = RSA->VerifyData(plain_Text, SHA1, signed_text);
