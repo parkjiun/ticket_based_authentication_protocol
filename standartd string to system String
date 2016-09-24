@@ -1,0 +1,17 @@
+// convert_standard_string_to_system_string.cpp
+// compile with: /clr
+#include <string>
+#include <iostream>
+using namespace System;
+using namespace std;
+
+int main() {
+   string str = "test";
+   cout << str << endl;
+   String^ str2 = gcnew String(str.c_str());
+   Console::WriteLine(str2);
+
+   // alternatively
+   String^ str3 = gcnew String(str.c_str());
+   Console::WriteLine(str3);
+}
