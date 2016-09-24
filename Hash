@@ -1,0 +1,17 @@
+HASH
+  public:
+  array<unsigned char>^ ComputeHash(
+  	array<unsigned char>^ buffer
+  )
+  매개 변수
+    buffer
+  해시 코드를 계산할 입력입니다.
+  
+  반환 값
+    Type: array<System::Byte>^
+  계산된 해시 코드입니다.
+
+예제
+	array<Byte>^plain_Text =  ByteConverter->GetBytes("PLAIN TEXT");
+	SHA1CryptoServiceProvider^ SHA1 = gcnew SHA1CryptoServiceProvider;
+	array<Byte>^hashed_text = SHA1->ComputeHash(plain_Text);
