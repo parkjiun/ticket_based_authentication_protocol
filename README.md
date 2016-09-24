@@ -3,6 +3,7 @@
 [Anonymous Ticket-Based Authentication]
 
 1) 과제 목적
+
 주어진 명세 및 요구사항을 따르는 시스템의 요구분석, 설계, 구현, 시험하는 전 과정을 스스로 수행함으로써 암호화 기법과 이를 응용한 보안 프로토콜 시스템의 설계 및 구현 능력을 키운다. 
 
 
@@ -12,6 +13,7 @@
 
 
 3) 프로토콜
+
   o. 가정
  -  인증 서버(이하 Bob)는 다수 사용자의 인증을 담당하는데, 각 사용자의 certificate를 검증하기 위해서 CA의 public key를 보유하고 있다.
  - 각 사용자는 CA에 의해 발급된 다음과 같은 certificate를 소유하고 있다. 예를 들어, Alice의 certificate는 =("Alice", Alice의 public key) 및 로 구성되어 있다. Certificate에는 소유자 명칭이 hash 함수 적용된 채 저장되어 있어, certificate를 통해서는 그 소유자(사용자)를 알 수 없다. 각 사용자의 명칭은 예측 불가능하기 때문에 forward search는 불가능하다.
