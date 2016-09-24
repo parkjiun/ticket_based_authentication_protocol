@@ -11,9 +11,9 @@ int main()
 {
 	freopen("output.txt", "w", stdout);
 
-	// 1. seoka ÇØ½¬-> signdata -> ¹İ´ë°úÁ¤
-	// 2. seoka ÇØ½¬
-	// 1-2 ºñ±³
+	// 1. seoka í•´ì‰¬-> signdata -> ë°˜ëŒ€ê³¼ì •
+	// 2. seoka í•´ì‰¬
+	// 1-2 ë¹„êµ
 
 	RSACryptoServiceProvider^ RSA = gcnew RSACryptoServiceProvider;
 	UnicodeEncoding^ ByteConverter = gcnew UnicodeEncoding;
@@ -24,21 +24,21 @@ int main()
 	// Keyword
 	array<Byte>^dataToEncrypt = ByteConverter->GetBytes("keyword");
 	
-	// RSAÀÇ key setting
+	// RSAì˜ key setting
 	RSA->FromXmlString(privateKeyText);
 
-	// Hash Service °³Ã¼
+	// Hash Service ê°œì²´
 	Object^ hash_algo = gcnew SHA1CryptoServiceProvider;
 
-	// dataToEncrypt¸¦ 
-	// hashÇÏ°í
-	// ¼ÂÆÃµÈ key·Î ¾ÏÈ£È­
+	// dataToEncryptë¥¼ 
+	// hashí•˜ê³ 
+	// ì…‹íŒ…ëœ keyë¡œ ì•”í˜¸í™”
 	array<Byte>^result = RSA->SignData(dataToEncrypt, hash_algo); //
 	printf("sign data : %s\n", result);
 
-	// dataToEncrypt¸¦ hash ÇÏ°í ¼ÂÆÃµÈ key·Î ¾ÏÈ£È­ÇÏ¿©
-	// result¿Í ºñ±³ÇÑ´Ù
-	// °°´Ù¸é return true;
+	// dataToEncryptë¥¼ hash í•˜ê³  ì…‹íŒ…ëœ keyë¡œ ì•”í˜¸í™”í•˜ì—¬
+	// resultì™€ ë¹„êµí•œë‹¤
+	// ê°™ë‹¤ë©´ return true;
 	bool success = RSA->VerifyData(dataToEncrypt, hash_algo, result);
 	if (success) printf("Success\n");
 	else printf("Fail. \n");
