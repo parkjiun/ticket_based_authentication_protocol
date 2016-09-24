@@ -41,8 +41,8 @@ int main()
 		//		false: mismatch between "result of applying hash algotirhm to comparison target" and "result of SignData()"(3rd parameter)
 		bool verify = RSA->VerifyData(ByteConverter->GetBytes("SIGK"), asd, Sign);
 		
-		if (verify) printf("��ġ\n");
-		else printf("����ġ\n");
+		if (verify) printf("ÀÏÄ¡\n");
+		else printf("ºÒÀÏÄ¡\n");
 
 	}
 	catch (CryptographicException^ e)
