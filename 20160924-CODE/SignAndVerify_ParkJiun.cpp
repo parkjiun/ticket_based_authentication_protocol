@@ -27,22 +27,22 @@ int main()
 		array<Byte>^ Plain = ByteConverter->GetBytes(input); //convert System String to array<Byte>
 	
 		//hash algorithm: SHA256 among SHA-2
-		Object^ asd = gcnew SHA256Managed; 
+		Object^ hash = gcnew SHA256Managed; 
 
 		//1. Prototype: array<Byte>^ SignData(array<Byte>^ buffer, System::Object^ hash)
 		//2. parameter: (signature target, hash algorithm)
 		//3. return: result of sign
-		array<Byte>^Sign = RSA->SignData(Plain, asd);
+		array<Byte>^Sign = RSA->SignData(Plain, hash);
 		
 		//1. Prototype: bool VerifyData(array<Byte>^ buffer, System::Object^ hash, array<Byte>^ Signature)
 		//2. parameter: (comparison target, hash algorithm used when signing, result of SignData())
 		//3. return
 		//		true: match between "result of applying hash algotirhm to comparison target" and "result of SignData()"(3rd parameter)
 		//		false: mismatch between "result of applying hash algotirhm to comparison target" and "result of SignData()"(3rd parameter)
-		bool verify = RSA->VerifyData(ByteConverter->GetBytes("SIGK"), asd, Sign);
+		bool verify = RSA->VerifyData(ByteConverter->GetBytes("SIGN"), hash, Sign);
 		
-		if (verify) printf("ÀÏÄ¡\n");
-		else printf("ºÒÀÏÄ¡\n");
+		if (verify) printf("MATCH\n");
+		else printf("MISMATCH\n");
 
 	}
 	catch (CryptographicException^ e)
