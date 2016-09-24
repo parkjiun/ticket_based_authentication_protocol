@@ -15,7 +15,7 @@ int main()
 		UnicodeEncoding^ ByteConverter = gcnew UnicodeEncoding;
 		RSACryptoServiceProvider^ RSA = gcnew RSACryptoServiceProvider;
 
-		RSAParameters privateKey = RSA->ExportParameters(true); //ÀÎÀÚ·Î ture ³Ñ±â¸é private key ¹Ş¾Æ¿È/false¸é public key
+		RSAParameters privateKey = RSA->ExportParameters(true); //ì¸ìë¡œ ture ë„˜ê¸°ë©´ private key ë°›ì•„ì˜´/falseë©´ public key
 		RSAParameters publicKey;
 
 
@@ -25,56 +25,56 @@ int main()
 					bool includePrivateParameters
 				) override
 			
-			¸Å°³ º¯¼ö
+			ë§¤ê°œ ë³€ìˆ˜
 				includePrivateParameters
 				Type: System::Boolean
-				°ø°³ ¹× °³ÀÎ RSA Å°¸¦ Æ÷ÇÔÇÏ´Â °æ¿ì trueÀÌ°í, °ø°³ Å°¸¸ Æ÷ÇÔÇÏ´Â °æ¿ì´Â falseÀÔ´Ï´Ù.
+				ê³µê°œ ë° ê°œì¸ RSA í‚¤ë¥¼ í¬í•¨í•˜ëŠ” ê²½ìš° trueì´ê³ , ê³µê°œ í‚¤ë§Œ í¬í•¨í•˜ëŠ” ê²½ìš°ëŠ” falseì…ë‹ˆë‹¤.
 			
-			¹İÈ¯ °ª
+			ë°˜í™˜ ê°’
 				Type: System::String^
-				ÇöÀç RSA °³Ã¼ÀÇ Å°°¡ µé¾î ÀÖ´Â XML ¹®ÀÚ¿­ÀÔ´Ï´Ù.
+				í˜„ì¬ RSA ê°œì²´ì˜ í‚¤ê°€ ë“¤ì–´ ìˆëŠ” XML ë¬¸ìì—´ì…ë‹ˆë‹¤.
 		*/
 		String^ publicKeyText = RSA->ToXmlString(false);
-		//ToXmlString ÇÔ¼ö¿¡ ÀÎÀÚ¸¦ false·Î Àü´ŞÇØ RSA¿¡ ÀúÀåµÈ public Key¸¦ ¹Ş¾Æ¿È
+		//ToXmlString í•¨ìˆ˜ì— ì¸ìë¥¼ falseë¡œ ì „ë‹¬í•´ RSAì— ì €ì¥ëœ public Keyë¥¼ ë°›ì•„ì˜´
 		printf("<Public Key1>\n%s\n\n", publicKeyText);
 
 		String^ privateKeyText = RSA->ToXmlString(true);
-		//ToXmlString ÇÔ¼ö¿¡ ÀÎÀÚ¸¦ true·Î Àü´ŞÇØ RSA¿¡ ÀúÀåµÈ private Key¸¦ ¹Ş¾Æ¿È
+		//ToXmlString í•¨ìˆ˜ì— ì¸ìë¥¼ trueë¡œ ì „ë‹¬í•´ RSAì— ì €ì¥ëœ private Keyë¥¼ ë°›ì•„ì˜´
 		printf("<Private Key>\n%s\n\n", privateKeyText);
 
 		array<Byte>^ Plain = ByteConverter->GetBytes("PLAIN TEXT");
 
 
 		/*
-		FromXmlString ÇÔ¼ö
-		RSA °³Ã¼ÀÇ key °ªÀ» XML stringÀ¸¿¡ ÀúÀåµÅ ÀÖ´Â Á¤º¸·Î ÃÊ±âÈ­ÇØÁÜ
+		FromXmlString í•¨ìˆ˜
+		RSA ê°œì²´ì˜ key ê°’ì„ XML stringìœ¼ì— ì €ì¥ë¼ ìˆëŠ” ì •ë³´ë¡œ ì´ˆê¸°í™”í•´ì¤Œ
 
 			public:
 				virtual void FromXmlString(
 					String^ xmlString
 				) override
 
-			¸Å°³ º¯¼ö
+			ë§¤ê°œ ë³€ìˆ˜
 			xmlString
 				Type: System::String
 				The XML string containing RSA key information.
 			
-			¿¹¿Ü
-			¿¹¿Ü Á¶°Ç
+			ì˜ˆì™¸
+			ì˜ˆì™¸ ì¡°ê±´
 				ArgumentNullException
 					The xmlString parameter is nullptr.
 				CryptographicException
 					The format of the xmlString parameter is not valid.
 		*/
 
-		//¾Æ·¡ÀÇ ½Ä°ú °°ÀÌ public key µîÀ» ÀÌ¹Ì ¹Ş¾Æ³õÀº key stringÀ¸·Î »ç¿ëÇÒ ¼ö ÀÖ´Ù.
+		//ì•„ë˜ì˜ ì‹ê³¼ ê°™ì´ public key ë“±ì„ ì´ë¯¸ ë°›ì•„ë†“ì€ key stringìœ¼ë¡œ ì‚¬ìš©í•  ìˆ˜ ìˆë‹¤.
 		//publicKeyText = "<RSAKeyValue><Modulus>tjver1f5lrmPgK3jyclHartZrHfO6brZWS9gM6lcDNexph8sOJ+mxW5sCT5Gd0wkcpSn0udruSJY60O3+GF3efURLDHWOC3/UQ8/1IyS0E6Vm1Wuur+/FAt9U/NgHKf4mWobHDb7Ee7T26/oF/uq71Vw+kCg+BsnrdwuzWjR9wU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>";
 		RSA->FromXmlString(publicKeyText);
 		array<Byte>^Cipher = RSA->Encrypt(Plain, false);
 		/*
-			Encrypt´Â Public Key¸¦, Decrypt´Â Private Key¸¦ »ç¿ëÇØ¾ßÇÏ¸ç,
-			¼­¸íÀ» À§ÇÑ Private Key·ÎÀÇ Encrypt´Â SignData ÇÔ¼ö¸¦ »ç¿ëÇÏ°í
-			°ËÁõÀ» À§ÇÑ Public key·ÎÀÇ Decrypt´Â VeryfyData ÇÔ¼ö¸¦ »ç¿ëÇÔ/
+			EncryptëŠ” Public Keyë¥¼, DecryptëŠ” Private Keyë¥¼ ì‚¬ìš©í•´ì•¼í•˜ë©°,
+			ì„œëª…ì„ ìœ„í•œ Private Keyë¡œì˜ EncryptëŠ” SignData í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•˜ê³ 
+			ê²€ì¦ì„ ìœ„í•œ Public keyë¡œì˜ DecryptëŠ” VeryfyData í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•¨/
 		*/
 
 
