@@ -1,0 +1,12 @@
+void CovertStringTostring(String ^ s, std::string& os) {
+	using namespace Runtime::InteropServices;
+	const char* chars =
+		(const char*)(Marshal::StringToHGlobalAnsi(s)).ToPointer();
+	os = chars;
+	Marshal::FreeHGlobal(IntPtr((void*)chars));
+}
+
+//System String을 표준 string으로 바꿔주는 함수
+//parameter
+//String^ s : 변환할 String
+//string& os: 변환 내용이 저장될 string  변수
